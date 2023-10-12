@@ -168,8 +168,8 @@
           (be it parts of the private key or parts of encrypted message)
           MUST be performed with code that doesn't have secret data dependent
           branch instructions, secret data dependent memory accesses, or
-        uses non-constant time machine instructions (which ones are those
-        if architecture dependant,
+        uses non-constant time machine instructions (which ones these are
+        is architecture dependant,
           but division is commonly non-constant time).
         </t>
         <t>Special care should be placed around the code that handles
@@ -208,9 +208,9 @@
         <section title="Montgomery ladder">
         <t>For the modular exponentiation algorithm to be side-channel free
             every step of the calculation MUST NOT depend on the bits of
-            the exponent. In particular, use of simple square and multiply
+            the exponent. In particular, use of a simple square and multiply
             algorithm will leak information about bits of the exponent
-            through lack of multiplication operation in individual
+            through the lack of a multiplication operation in individual
             exponentiation steps.</t>
         <t>The recommended workaround against it, is the use of the
             Montgomery ladder construction.</t>
@@ -256,7 +256,7 @@
 
     <section title="Exponent blinding">
         <t>To further protect against private key leaks, it's RECOMMENDED
-            to perform the blinding of the used exponents.</t>
+            to perform blinding of the used exponents.</t>
         <t>«describe the exponent blinding algorithm here»</t>
     </section>
 
@@ -265,7 +265,7 @@
             depadding operation needs to follow the standard algorithm
             to provide a safe API to users.</t>
         <t>It MUST ignore the value of the very fist octet of padding and
-            process the remaining bytes as if it was equal zero.</t>
+            process the remaining bytes as if it was equal to zero.</t>
         <t>The PKCS #1 v1.5 padding is considered deprecated, and should be
         used only to process legacy data. It MUST NOT be used as part
             of online protocols or API endpoints.</t>
@@ -323,7 +323,7 @@
             v1.5 padding nor provide a usage-specific API,
             it's possible to implement an implicit rejection
              algorithm as a protection measure. It should be noted that
-             implementing it is hard, thus it's RECOMMENDED instead to
+             implementing it is hard, thus it's RECOMMENDED to
              disable support for PKCS #1 v1.5 padding instead.</t>
             <t>To implement implicit rejection, the
              RSAES-PKCS1-V1_5-DECRYPT from section 7.2.2 of RFC 8017 needs
@@ -346,7 +346,7 @@
                    <figure><artwork>
   m = RSADP ((n, d), c).
                    </artwork></figure>
-                   Note: the RSADP MUST be constant-time with respect of
+                   Note: the RSADP MUST be constant-time with respect to
                    message m.<vspace/>
                    If RSADP outputs "ciphertext representative out of range"
                    (meaning that c >= n), output "decryption error" and stop.
@@ -356,7 +356,7 @@
                    <figure><artwork>
   EM = I2OSP (m, k).
                    </artwork></figure>
-                   Note: I2OSP MUST be constant-time with respect of m.
+                   Note: I2OSP MUST be constant-time with respect to m.
                    </t>
                </list>
            </t>
@@ -456,10 +456,10 @@
     </section>
 
     <section title="Deprecated Algorithms">
-        <t>Current protocols deployments MUST NOT use
+        <t>Current protocol deployments MUST NOT use
             encryption with RSA PKCS #1 v1.5 padding.
             Support for RSA PKCS #1 v1.5 SHOULD be disabled in default
-            configuration of any implementation of RSA cryptosystem.
+            configuration of any implementation of an RSA cryptosystem.
             All new protocols MUST NOT specify PKCS #1 v1.5 as a valid
             encryption padding for RSA keys.</t>
     </section>
